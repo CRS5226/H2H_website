@@ -217,6 +217,7 @@ export default function Contact() {
                       placeholder="John Doe"
                       className="w-full border border-gray-200 rounded-sm px-4 py-3 text-sm text-[#0F1923] placeholder-gray-300 focus:outline-none focus:border-[#16a34a] transition-colors"
                       style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                      suppressHydrationWarning
                     />
                   </div>
 
@@ -236,6 +237,7 @@ export default function Contact() {
                       placeholder="john@example.com"
                       className="w-full border border-gray-200 rounded-sm px-4 py-3 text-sm text-[#0F1923] placeholder-gray-300 focus:outline-none focus:border-[#16a34a] transition-colors"
                       style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                      suppressHydrationWarning
                     />
                   </div>
 
@@ -253,6 +255,7 @@ export default function Contact() {
                       onChange={handleChange}
                       className="w-full border border-gray-200 rounded-sm px-4 py-3 text-sm text-[#0F1923] focus:outline-none focus:border-[#16a34a] transition-colors bg-white"
                       style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                      suppressHydrationWarning
                     >
                       <option value="">Select a topic</option>
                       <option value="collaboration">Research Collaboration</option>
@@ -286,6 +289,7 @@ export default function Contact() {
                     onClick={handleSubmit}
                     className="w-full bg-[#0F1923] text-white font-semibold py-3 rounded-sm hover:bg-[#16a34a] transition-colors duration-300 text-sm tracking-wide"
                     style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                    suppressHydrationWarning
                   >
                     Send Message →
                   </button>

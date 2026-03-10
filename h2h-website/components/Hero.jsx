@@ -49,10 +49,10 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col overflow-hidden bg-white"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-white pt-16"
     >
       {/* Background Candlestick Chart SVG */}
-      <div className="absolute inset-0 flex items-center justify-end opacity-10 pointer-events-none pr-0">
+      <div className="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-end opacity-10 pointer-events-none">
         <svg
           viewBox="0 0 560 400"
           className="w-full max-w-3xl h-auto candle-animate"
@@ -144,7 +144,7 @@ export default function Hero() {
 
             {/* Headline */}
             <h1
-              className={`text-5xl md:text-7xl font-black text-[#0F1923] leading-none mb-6 transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              className={`text-6xl md:text-8xl font-black text-[#0F1923] leading-none mb-6 transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ fontFamily: 'Fraunces, serif' }}
             >
               Decoding

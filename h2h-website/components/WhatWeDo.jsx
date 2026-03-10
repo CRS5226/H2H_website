@@ -178,7 +178,7 @@ export default function WhatWeDo() {
               </p>
 
               {/* Mini Chart */}
-              <div className="mb-5 opacity-60 group-hover:opacity-100 transition-opacity">
+              <div className="mb-5 opacity-60 group-hover:opacity-100 transition-opacity h-10 overflow-hidden">
                 <MiniChart data={s.chart} color={s.signalColor} />
               </div>
 

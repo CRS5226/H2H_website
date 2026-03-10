@@ -4,22 +4,26 @@ import { useEffect, useRef, useState } from 'react'
 
 const pillars = [
   {
-    icon: '📊',
+    symbol: '▦',
+    color: '#16a34a',
     title: 'Quantitative Research',
     desc: 'Every trade is backed by rigorous data models, backtested strategies, and statistical validation before execution.',
   },
   {
-    icon: '🧠',
+    symbol: '◈',
+    color: '#6366f1',
     title: 'Academic Rigour',
     desc: 'Founded on deep academic knowledge in economic policy and finance, bridging theory with live market application.',
   },
   {
-    icon: '⚡',
+    symbol: '⚡',
+    color: '#f59e0b',
     title: 'Real-Time Execution',
     desc: 'Combining research with fast, disciplined execution to capture opportunities across Indian equity markets.',
   },
   {
-    icon: '📈',
+    symbol: '▲',
+    color: '#16a34a',
     title: 'Macro Intelligence',
     desc: 'Monitoring macroeconomic trends, capital flows, and policy shifts to stay ahead of market movements.',
   },
@@ -72,7 +76,7 @@ export default function AboutFirm() {
             </h2>
 
             {/* Trade Setup Visual */}
-            <div className="bg-[#0F1923] rounded-sm p-5 mt-8 font-mono text-xs">
+            <div className="bg-[#0F1923] rounded-sm p-5 mt-8 font-mono text-xs overflow-hidden max-w-full">
               <div className="flex items-center gap-2 mb-4">
                 <span className="w-2 h-2 rounded-full bg-[#16a34a] blink-green" />
                 <span
@@ -166,7 +170,23 @@ export default function AboutFirm() {
               className={`border border-gray-100 rounded-sm p-6 hover:border-[#16a34a]/40 hover:shadow-md transition-all duration-300 group transition-all duration-700`}
               style={{ transitionDelay: `${i * 100}ms`, opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(20px)' }}
             >
-              <div className="text-3xl mb-4">{p.icon}</div>
+              <div
+                style={{
+                  width: '44px',
+                  height: '44px',
+                  borderRadius: '4px',
+                  backgroundColor: p.color + '18',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '16px',
+                  fontSize: '20px',
+                  color: p.color,
+                  fontFamily: 'Space Mono, monospace',
+                }}
+              >
+                {p.symbol}
+              </div>
               <h3
                 className="text-base font-bold text-[#0F1923] mb-2 group-hover:text-[#16a34a] transition-colors"
                 style={{ fontFamily: 'Fraunces, serif' }}

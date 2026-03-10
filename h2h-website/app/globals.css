@@ -1,19 +1,19 @@
-@import "tailwindcss/preflight";
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
+@source "../components/**/*.{js,jsx,ts,tsx}";
+@source "../app/**/*.{js,jsx,ts,tsx}";
 
-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background-color: #ffffff;
-  color: #0a0a0a;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #ffffff;
+    color: #0a0a0a;
+  }
 }
 
 /* Ticker tape animation */
@@ -48,7 +48,7 @@ body {
   animation: fadeUp 0.7s ease forwards;
 }
 
-/* Green/Red blink for indicators */
+/* Green blink for indicators */
 @keyframes blink-green {
   0%, 100% { background-color: #16a34a; }
   50%       { background-color: #15803d; }
