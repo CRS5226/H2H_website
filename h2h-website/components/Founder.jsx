@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 const strengths = [
@@ -50,43 +51,17 @@ export default function Founder() {
           <div
             className={`transition-all duration-700 ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
           >
-            {/* Photo Placeholder */}
+            {/* Founder Photo */}
             <div className="relative mb-8">
-              <div className="w-full aspect-[4/3] bg-[#0F1923] rounded-sm flex items-center justify-center overflow-hidden">
-                {/* Decorative background */}
-                <svg
-                  viewBox="0 0 400 300"
-                  className="absolute inset-0 w-full h-full opacity-10"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* Grid lines */}
-                  {[0,1,2,3,4,5,6,7,8].map(i => (
-                    <line key={`v${i}`} x1={i*50} y1="0" x2={i*50} y2="300"
-                      stroke="#16a34a" strokeWidth="0.5" />
-                  ))}
-                  {[0,1,2,3,4,5,6].map(i => (
-                    <line key={`h${i}`} x1="0" y1={i*50} x2="400" y2={i*50}
-                      stroke="#16a34a" strokeWidth="0.5" />
-                  ))}
-                  {/* Chart line */}
-                  <polyline
-                    points="0,250 50,220 100,230 150,180 200,190 250,140 300,150 350,100 400,110"
-                    fill="none" stroke="#16a34a" strokeWidth="2"
-                  />
-                </svg>
-
-                {/* Avatar placeholder */}
-                <div className="relative z-10 flex flex-col items-center gap-3">
-                  <div className="w-24 h-24 rounded-full bg-gray-700 border-2 border-[#16a34a]/40 flex items-center justify-center">
-                    <span className="text-4xl">👤</span>
-                  </div>
-                  <span
-                    className="text-gray-400 text-xs tracking-widest"
-                    style={{ fontFamily: 'Space Mono, monospace' }}
-                  >
-                    PHOTO COMING SOON
-                  </span>
-                </div>
+              <div className="w-full aspect-[4/3] rounded-sm overflow-hidden">
+                <Image
+                  src="/harshit.png"
+                  alt="Harshit Agarwal"
+                  width={600}
+                  height={450}
+                  className="w-full h-full object-cover object-top"
+                  priority
+                />
               </div>
 
               {/* Floating badge */}

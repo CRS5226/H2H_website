@@ -14,7 +14,7 @@ const edges = [
     title: 'Volatility Modelling',
     desc: 'Advanced ATR-based models to size positions correctly and manage drawdowns with precision.',
     tag: 'ATR · VIX · SD',
-    color: '#16a34a',
+    color: '#dc2626',
     chart: [40, 55, 45, 65, 50, 70, 60, 80, 65, 85],
   },
   {
@@ -41,10 +41,11 @@ const edges = [
 ]
 
 const publications = [
-  'Stock Market Movement Analysis in Emerging Economies',
-  'Volatility Clustering & Trend Analytics in Indian Equities',
-  'Capital Flow Dynamics & Macroeconomic Policy Impact',
-  'Quantitative Models for Proprietary Trading Strategies',
+  {
+    title: 'Stock Market Reaction to Macroeconomic Variables in Brics: An Assessment with Dynamic Autoregressive Distributed Lag Simulations',
+    meta: 'H Agarwal · The Journal of Developing Areas · 2025',
+    url: 'https://muse.jhu.edu/pub/51/article/970241/summary',
+  },
 ]
 
 function MiniChart({ data, color }) {
@@ -250,25 +251,36 @@ export default function ResearchEdge() {
             </span>
             <div className="h-px w-16 bg-[#16a34a]" />
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-1 gap-4">
             {publications.map((pub, i) => (
-              <div
+              <a
                 key={i}
-                className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-sm px-4 py-3 hover:bg-white/10 transition-colors"
+                href={pub.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-sm px-4 py-4 hover:bg-white/10 hover:border-[#16a34a]/40 transition-colors group"
               >
                 <span
-                  className="text-[#16a34a] font-bold text-sm mt-0.5 flex-shrink-0"
+                  className="text-[#16a34a] font-bold text-sm mt-0.5 shrink-0"
                   style={{ fontFamily: 'Space Mono, monospace' }}
                 >
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <span
-                  className="text-gray-300 text-sm leading-relaxed"
-                  style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
-                >
-                  {pub}
-                </span>
-              </div>
+                <div>
+                  <span
+                    className="text-gray-200 text-sm leading-relaxed block mb-1 group-hover:text-white transition-colors"
+                    style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                  >
+                    {pub.title}
+                  </span>
+                  <span
+                    className="text-[#16a34a] text-xs tracking-wide"
+                    style={{ fontFamily: 'Space Mono, monospace' }}
+                  >
+                    {pub.meta} ↗
+                  </span>
+                </div>
+              </a>
             ))}
           </div>
         </div>
