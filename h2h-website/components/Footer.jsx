@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 const footerLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
@@ -27,29 +29,14 @@ export default function Footer() {
           {/* Brand */}
           <div>
             {/* Logo */}
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 bg-white/10 border border-white/20 rounded-sm flex items-center justify-center">
-                <span
-                  className="text-white font-bold text-sm tracking-widest"
-                  style={{ fontFamily: 'Space Mono, monospace' }}
-                >
-                  H2H
-                </span>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span
-                  className="text-white font-bold text-sm tracking-wide"
-                  style={{ fontFamily: 'Fraunces, serif' }}
-                >
-                  H TO H Partners
-                </span>
-                <span
-                  className="text-gray-500 text-[10px] tracking-widest uppercase"
-                  style={{ fontFamily: 'Space Mono, monospace' }}
-                >
-                  LLP
-                </span>
-              </div>
+            <div className="mb-4">
+              <Image
+                src="/logo.png"
+                alt="H TO H Partners LLP"
+                width={120}
+                height={40}
+                className="h-10 w-auto object-contain invert"
+              />
             </div>
 
             <p

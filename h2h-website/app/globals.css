@@ -30,12 +30,13 @@
 
 /* Candlestick pulse */
 @keyframes candlePulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(1); }
-  50%       { opacity: 0.6; transform: scaleY(1.05); }
+  0%, 100% { transform: scaleY(1); }
+  50%       { transform: scaleY(1.03); }
 }
 
 .candle-animate {
-  animation: candlePulse 3s ease-in-out infinite;
+  animation: candlePulse 4s ease-in-out infinite;
+  transform-origin: bottom;
 }
 
 /* Scroll reveal */

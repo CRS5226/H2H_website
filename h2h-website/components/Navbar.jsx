@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -32,15 +33,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 bg-[#0F1923] rounded-sm flex items-center justify-center">
-            <span
-              className="text-white font-bold text-sm tracking-widest"
-              style={{ fontFamily: 'Space Mono, monospace' }}
-            >
-              H2H
-            </span>
-          </div>
+        <a href="#home" className="flex items-center gap-3 group">
+          <Image
+            src="/logo.png"
+            alt="H TO H Partners LLP"
+            width={40}
+            height={40}
+            className="h-10 w-auto object-contain"
+            priority
+          />
           <div className="flex flex-col leading-none">
             <span
               className="text-[#0F1923] font-bold text-sm tracking-wide"

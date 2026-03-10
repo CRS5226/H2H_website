@@ -52,7 +52,7 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col overflow-hidden bg-white pt-16"
     >
       {/* Background Candlestick Chart SVG */}
-      <div className="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-end opacity-10 pointer-events-none">
+      <div className="absolute right-0 top-0 bottom-0 w-3/5 flex items-center justify-end pointer-events-none" style={{ opacity: 0.85 }}>
         <svg
           viewBox="0 0 560 400"
           className="w-full max-w-3xl h-auto candle-animate"
@@ -77,7 +77,7 @@ export default function Hero() {
                   x1={c.x} y1={c.high}
                   x2={c.x} y2={c.low}
                   stroke={c.bull ? '#16a34a' : '#dc2626'}
-                  strokeWidth="1.5"
+                  strokeWidth="2.5"
                 />
                 {/* Body */}
                 <rect
@@ -109,8 +109,8 @@ export default function Hero() {
       </div>
 
       {/* Ticker Tape */}
-      <div className="w-full bg-[#0F1923] overflow-hidden py-2 mt-0 z-10">
-        <div className="ticker-animate">
+      <div style={{ width: '100%', backgroundColor: '#0F1923', overflow: 'hidden', height: '44px', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 10 }}>
+        <div className="ticker-animate" style={{ display: 'flex', alignItems: 'center', lineHeight: 1 }}>
           {[...tickerItems, ...tickerItems].map((item, i) => (
             <span
               key={i}
