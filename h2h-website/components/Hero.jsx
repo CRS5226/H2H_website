@@ -52,7 +52,7 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col overflow-hidden bg-white pt-16"
     >
       {/* Background Candlestick Chart SVG */}
-      <div className="absolute right-0 top-0 bottom-0 w-3/5 flex items-center justify-end pointer-events-none" style={{ opacity: 0.85 }}>
+      <div className="absolute right-0 top-0 bottom-0 w-3/5 hidden lg:flex items-center justify-end pointer-events-none" style={{ opacity: 0.85 }}>
         <svg
           viewBox="0 0 560 400"
           className="w-full max-w-3xl h-auto candle-animate"
