@@ -39,6 +39,38 @@ const indicators = [
   { label: 'Signal', value: '● Bullish', color: '#16a34a' },
 ]
 
+/* StatItem — commented out (stats bar hidden)
+function StatItem({ stat, triggered }) {
+  const [display, setDisplay] = useState(stat.numeric ? 0 : stat.value)
+
+  useEffect(() => {
+    if (!triggered || !stat.numeric) return
+    const target = stat.value
+    const duration = 1800
+    const start = performance.now()
+    const frame = (now) => {
+      const elapsed = now - start
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setDisplay(Math.floor(eased * target))
+      if (progress < 1) requestAnimationFrame(frame)
+    }
+    requestAnimationFrame(frame)
+  }, [triggered, stat.numeric, stat.value])
+
+  return (
+    <div className="text-center">
+      <div className="text-2xl font-bold text-[#0F1923]" style={{ fontFamily: 'Fraunces, serif' }}>
+        {stat.numeric ? `${display}${stat.suffix}` : stat.value}
+      </div>
+      <div className="text-xs text-gray-400 tracking-widest uppercase mt-0.5" style={{ fontFamily: 'Space Mono, monospace' }}>
+        {stat.label}
+      </div>
+    </div>
+  )
+}
+*/
+
 export default function Hero() {
   const [mounted, setMounted] = useState(false)
 
@@ -52,77 +84,133 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col overflow-hidden bg-white pt-16"
     >
       {/* Background Candlestick Chart SVG */}
-      <div className="absolute right-0 top-0 bottom-0 w-3/5 hidden lg:flex items-center justify-end pointer-events-none" style={{ opacity: 0.85 }}>
+      <div className="absolute right-17 top-0 bottom-0 w-3/5 hidden lg:flex items-center justify-end pointer-events-none" style={{ opacity: 0.85 }}>
         <svg
-          viewBox="0 0 560 400"
+          viewBox="0 0 600 420"
           className="w-full max-w-3xl h-auto candle-animate"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* EMA line */}
+          {/* Grid lines - subtle */}
+          <line x1="0" y1="100" x2="560" y2="100" stroke="#e5e7eb" strokeWidth="0.5" opacity="0.4" />
+          <line x1="0" y1="180" x2="560" y2="180" stroke="#e5e7eb" strokeWidth="0.5" opacity="0.4" />
+          <line x1="0" y1="260" x2="560" y2="260" stroke="#e5e7eb" strokeWidth="0.5" opacity="0.4" />
+          <line x1="0" y1="320" x2="560" y2="320" stroke="#e5e7eb" strokeWidth="0.5" opacity="0.4" />
+
+          {/* === PHASE 1: Consolidation (candles 1-5, sideways, small bodies) === */}
+          {/* Candle 1 - bear, small */}
+          <line x1="40" y1="290" x2="40" y2="320" stroke="#dc2626" strokeWidth="1.5" />
+          <rect x="30" y="298" width="20" height="12" fill="#dc2626" rx="1" />
+
+          {/* Candle 2 - bull, small */}
+          <line x1="80" y1="285" x2="80" y2="318" stroke="#16a34a" strokeWidth="1.5" />
+          <rect x="70" y="293" width="20" height="14" fill="#16a34a" rx="1" />
+
+          {/* Candle 3 - bear, small */}
+          <line x1="120" y1="288" x2="120" y2="322" stroke="#dc2626" strokeWidth="1.5" />
+          <rect x="110" y="296" width="20" height="13" fill="#dc2626" rx="1" />
+
+          {/* Candle 4 - bull, small */}
+          <line x1="160" y1="284" x2="160" y2="316" stroke="#16a34a" strokeWidth="1.5" />
+          <rect x="150" y="292" width="20" height="13" fill="#16a34a" rx="1" />
+
+          {/* Candle 5 - bear, small — last consolidation candle */}
+          <line x1="200" y1="287" x2="200" y2="319" stroke="#dc2626" strokeWidth="1.5" />
+          <rect x="190" y="295" width="20" height="12" fill="#dc2626" rx="1" />
+
+          {/* === ENTRY LINE — price is at this level before breakout === */}
+          <line x1="20" y1="290" x2="560" y2="290"
+            stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="5,4" opacity="0.9" />
+          <text x="565" y="294" fill="#f59e0b" fontSize="10" fontFamily="Space Mono">ENTRY</text>
+
+          {/* === STOPLOSS LINE — well below, never touched === */}
+          <line x1="20" y1="350" x2="560" y2="350"
+            stroke="#dc2626" strokeWidth="1.5" strokeDasharray="5,4" opacity="0.8" />
+          <text x="565" y="354" fill="#dc2626" fontSize="10" fontFamily="Space Mono">SL</text>
+
+          {/* === TARGET LINE — up top, price heading here === */}
+          <line x1="20" y1="110" x2="560" y2="110"
+            stroke="#16a34a" strokeWidth="1.5" strokeDasharray="5,4" opacity="0.9" />
+          <text x="565" y="114" fill="#16a34a" fontSize="10" fontFamily="Space Mono">TARGET</text>
+
+          {/* === PHASE 2: Breakout candle (candle 6 - big bull, breaks entry) === */}
+          <line x1="240" y1="268" x2="240" y2="310" stroke="#16a34a" strokeWidth="2" />
+          <rect x="230" y="272" width="20" height="30" fill="#16a34a" rx="1" />
+
+          {/* === PHASE 3: Strong rally candles (7-12, all bullish, heading to target) === */}
+          {/* Candle 7 - strong bull */}
+          <line x1="280" y1="238" x2="280" y2="275" stroke="#16a34a" strokeWidth="2" />
+          <rect x="270" y="242" width="20" height="28" fill="#16a34a" rx="1" />
+
+          {/* Candle 8 - strong bull */}
+          <line x1="320" y1="205" x2="320" y2="245" stroke="#16a34a" strokeWidth="2" />
+          <rect x="310" y="209" width="20" height="30" fill="#16a34a" rx="1" />
+
+          {/* Candle 9 - small pullback bear (healthy) */}
+          <line x1="360" y1="200" x2="360" y2="230" stroke="#dc2626" strokeWidth="1.5" />
+          <rect x="350" y="207" width="20" height="14" fill="#dc2626" rx="1" />
+
+          {/* Candle 10 - strong bull resumes */}
+          <line x1="400" y1="168" x2="400" y2="208" stroke="#16a34a" strokeWidth="2" />
+          <rect x="390" y="172" width="20" height="30" fill="#16a34a" rx="1" />
+
+          {/* Candle 11 - bull, near target */}
+          <line x1="440" y1="140" x2="440" y2="175" stroke="#16a34a" strokeWidth="2" />
+          <rect x="430" y="144" width="20" height="25" fill="#16a34a" rx="1" />
+
+          {/* Candle 12 - last bull, hits target zone */}
+          <line x1="480" y1="112" x2="480" y2="148" stroke="#16a34a" strokeWidth="2" />
+          <rect x="470" y="116" width="20" height="26" fill="#16a34a" rx="1" />
+
+          {/* EMA 200 line - rising, confirming trend */}
           <polyline
-            points="40,175 80,162 120,168 160,152 200,158 240,140 280,145 320,128 360,135 400,118 440,125 480,108"
+            points="40,318 80,315 120,314 160,312 200,311 240,300 280,280 320,255 360,238 400,210 440,185 480,158"
             fill="none"
-            stroke="#16a34a"
+            stroke="#6366f1"
             strokeWidth="2"
             strokeDasharray="6,3"
-            opacity="0.8"
+            opacity="0.7"
           />
-          {candles.map((c, i) => {
-            const bodyTop = Math.min(c.open, c.close)
-            const bodyHeight = Math.abs(c.close - c.open)
-            return (
-              <g key={i}>
-                {/* Wick */}
-                <line
-                  x1={c.x} y1={c.high}
-                  x2={c.x} y2={c.low}
-                  stroke={c.bull ? '#16a34a' : '#dc2626'}
-                  strokeWidth="2.5"
-                />
-                {/* Body */}
-                <rect
-                  x={c.x - 10}
-                  y={bodyTop}
-                  width={20}
-                  height={Math.max(bodyHeight, 4)}
-                  fill={c.bull ? '#16a34a' : '#dc2626'}
-                  rx="1"
-                />
-              </g>
-            )
-          })}
-          {/* Entry line */}
-          <line x1="300" y1="210" x2="500" y2="210"
-            stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="4,3" opacity="0.9" />
-          <text x="505" y="214" fill="#f59e0b" fontSize="10" fontFamily="Space Mono">ENTRY</text>
 
-          {/* Target line */}
-          <line x1="300" y1="100" x2="500" y2="100"
-            stroke="#16a34a" strokeWidth="1.5" strokeDasharray="4,3" opacity="0.9" />
-          <text x="505" y="104" fill="#16a34a" fontSize="10" fontFamily="Space Mono">TARGET</text>
+          {/* EMA label */}
+          <text x="490" y="155" fill="#6366f1" fontSize="9" fontFamily="Space Mono" opacity="0.8">EMA</text>
 
-          {/* Stoploss line */}
-          <line x1="300" y1="260" x2="500" y2="260"
-            stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4,3" opacity="0.9" />
-          <text x="505" y="264" fill="#dc2626" fontSize="10" fontFamily="Space Mono">SL</text>
+          {/* Breakout arrow pointing up */}
+          <polygon
+            points="240,250 234,265 246,265"
+            fill="#16a34a"
+            opacity="0.9"
+          />
+
+          {/* Target reached glow circle */}
+          <circle cx="480" cy="115" r="8" fill="#16a34a" opacity="0.15" />
+          <circle cx="480" cy="115" r="4" fill="#16a34a" opacity="0.4" />
+
         </svg>
       </div>
 
       {/* Ticker Tape */}
-      <div style={{ width: '100%', backgroundColor: '#0F1923', overflow: 'hidden', height: '44px', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 10 }}>
-        <div className="ticker-animate" style={{ display: 'flex', alignItems: 'center', lineHeight: 1 }}>
+      <div style={{ width: '100%', backgroundColor: '#0F1923', overflow: 'hidden', height: '50px', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 10 }}>
+        <div className="ticker-animate" style={{ display: 'flex', alignItems: 'center', height: '50px' }}>
           {[...tickerItems, ...tickerItems].map((item, i) => (
             <span
               key={i}
-              className="flex items-center gap-1 px-6 text-xs whitespace-nowrap"
-              style={{ fontFamily: 'Space Mono, monospace' }}
+              style={{
+                fontFamily: 'Space Mono, monospace',
+                display: 'inline-flex',
+                alignItems: 'center',
+                height: '50px',
+                gap: '4px',
+                paddingLeft: '24px',
+                paddingRight: '24px',
+                fontSize: '13px',
+                whiteSpace: 'nowrap',
+                lineHeight: 1,
+              }}
             >
-              <span className="text-gray-400">{item.label}</span>
-              <span className="text-white font-bold">{item.value}</span>
-              <span className={item.up ? 'text-[#16a34a]' : 'text-[#dc2626]'}>
-                {item.change}
-              </span>
-              <span className="text-gray-600 ml-4">|</span>
+              <span style={{ color: '#9ca3af' }}>{item.label}</span>
+              <span style={{ color: '#ffffff', fontWeight: 'bold' }}>{item.value}</span>
+              <span style={{ color: item.up ? '#16a34a' : '#dc2626' }}>{item.change}</span>
+              <span style={{ color: '#4b5563', marginLeft: '16px' }}>|</span>
             </span>
           ))}
         </div>
@@ -214,32 +302,20 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom Stats Bar */}
+      {/* Bottom Stats Bar — commented out
       <div className="relative z-10 border-t border-gray-100 bg-[#f8f9fa]">
         <div className="max-w-7xl mx-auto px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { label: 'Focus Market', value: 'Indian Equities' },
-            { label: 'Strategy Type', value: 'Proprietary' },
-            { label: 'Research Base', value: 'Quantitative' },
-            { label: 'Founded By', value: 'MPhil Economics' },
+            { label: 'Years of Research', value: 5, suffix: '+', numeric: true },
+            { label: 'Strategies Tested', value: 120, suffix: '+', numeric: true },
+            { label: 'Publications', value: 3, suffix: '', numeric: true },
+            { label: 'Market Focus', value: 'NSE · BSE', suffix: '', numeric: false },
           ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div
-                className="text-lg font-bold text-[#0F1923]"
-                style={{ fontFamily: 'Fraunces, serif' }}
-              >
-                {stat.value}
-              </div>
-              <div
-                className="text-xs text-gray-400 tracking-widest uppercase mt-0.5"
-                style={{ fontFamily: 'Space Mono, monospace' }}
-              >
-                {stat.label}
-              </div>
-            </div>
+            <StatItem key={stat.label} stat={stat} triggered={mounted} />
           ))}
         </div>
       </div>
+      */}
     </section>
   )
 }

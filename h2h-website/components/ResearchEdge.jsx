@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 const stats = [
   { value: '5+', label: 'Years of Research', color: '#16a34a' },
   { value: '10+', label: 'Journal Publications', color: '#6366f1' },
-  { value: '₹Cr+', label: 'Capital Deployed', color: '#f59e0b' },
+  { value: '₹1Cr+', label: 'Capital Deployed', color: '#f59e0b' },
   { value: '100%', label: 'Data-Driven Decisions', color: '#16a34a' },
 ]
 

@@ -48,7 +48,7 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" ref={ref} className="bg-[#f8f9fa] py-24 px-6">
+    <section id="contact" ref={ref} className="bg-[#fdf8f0] py-24 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Section Label */}

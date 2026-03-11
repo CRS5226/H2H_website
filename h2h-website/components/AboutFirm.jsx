@@ -43,7 +43,7 @@ export default function AboutFirm() {
   }, [])
 
   return (
-    <section id="about" ref={ref} className="bg-white py-24 px-6">
+    <section id="about" ref={ref} className="py-24 px-6" style={{ backgroundColor: '#f7f9f7' }}>
       <div className="max-w-7xl mx-auto">
 
         {/* Section Label */}
