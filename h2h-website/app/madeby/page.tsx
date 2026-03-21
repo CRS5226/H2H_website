@@ -25,7 +25,7 @@ export default function MadeBy() {
             textDecoration: 'none',
           }}
         >
-          Harshit
+          Chitraksh Singh
         </a>
       </div>
     </main>
